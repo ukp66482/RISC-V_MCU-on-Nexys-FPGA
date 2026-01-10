@@ -1,0 +1,64 @@
+###############################################################################
+# Vivado (Tcl-based project flow)
+# Only source files + Tcl scripts are version controlled
+###############################################################################
+
+# Vivado project artifacts (DO NOT version control)
+*.xpr
+*.jou
+*.log
+*.str
+*.tmp
+*.dcp
+
+# Vivado working directories
+.vivado/
+*.cache/
+*.runs/
+*.hw/
+*.ip_user_files/
+*.sim/
+*.sdk/
+
+# IP cache & generated output
+*.gen/
+*.srcs/
+*.ipcache/
+*.xcix
+*.xci.lock
+
+# Bitstreams & reports (regenerable)
+*.bit
+*.bin
+*.ltx
+*.rpt
+*.pb
+
+# Simulation outputs
+xsim.dir/
+*.wdb
+*.vcd
+*.fst
+
+# Checkpoints
+*.dcp
+*.hwdef
+
+###############################################################################
+# OS / Editor
+###############################################################################
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+###############################################################################
+# Keep these (do NOT ignore)
+# - *.tcl
+# - rtl/*.v *.sv *.vhdl
+# - constraints/*.xdc
+# - README.md
+###############################################################################
