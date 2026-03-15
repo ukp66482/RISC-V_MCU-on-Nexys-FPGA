@@ -62,3 +62,76 @@ Thumbs.db
 # - constraints/*.xdc
 # - README.md
 ###############################################################################
+
+
+############################################
+# Vitis / Eclipse workspace
+############################################
+.metadata/
+.recommenders/
+.settings/
+*.log
+workspace.log
+
+############################################
+# Xilinx build artifacts
+############################################
+.Xil/
+Debug/
+Release/
+build/
+bin/
+out/
+
+############################################
+# Vitis / SDK generated files
+############################################
+*.elf
+*.map
+*.lst
+*.o
+*.a
+*.d
+*.cmake
+*.xpfm
+*.xsa
+*.xclbin
+*.bit
+*.bin
+
+############################################
+# BSP / Platform auto-generated
+############################################
+**/bsp/ps7_cortexa9_0/
+**/bsp/psu_cortexa53_0/
+**/bsp/psu_cortexr5_0/
+**/bsp/*.mss
+**/bsp/*.json
+
+############################################
+# Temporary / cache
+############################################
+tmp/
+.cache/
+.cache_*
+*.tmp
+*.bak
+*.swp
+
+############################################
+# OS / Editor
+############################################
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+############################################
+# Python / scripts cache (if any)
+############################################
+__pycache__/
+*.pyc
+
+/RISC-V-MCU
+
+/workspace-example
