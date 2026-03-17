@@ -134,4 +134,25 @@ __pycache__/
 
 /RISC-V-MCU
 
-/workspace-example
+############################################
+# Workspace example – ignore all except .c/.h sources
+############################################
+workspace-example/*
+!workspace-example/GPIO_test/
+workspace-example/GPIO_test/*
+!workspace-example/GPIO_test/src/
+workspace-example/GPIO_test/src/*
+!workspace-example/GPIO_test/src/*.c
+!workspace-example/GPIO_test/src/*.h
+!workspace-example/PWM_test/
+workspace-example/PWM_test/*
+!workspace-example/PWM_test/src/
+workspace-example/PWM_test/src/*
+!workspace-example/PWM_test/src/*.c
+!workspace-example/PWM_test/src/*.h
+!workspace-example/UART_test/
+workspace-example/UART_test/*
+!workspace-example/UART_test/src/
+workspace-example/UART_test/src/*
+!workspace-example/UART_test/src/*.c
+!workspace-example/UART_test/src/*.h
