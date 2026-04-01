@@ -28,7 +28,7 @@
 *.xci.lock
 
 # Bitstreams & reports (regenerable)
-*.bit
+#*.bit
 *.bin
 *.ltx
 *.rpt
@@ -94,9 +94,9 @@ out/
 *.d
 *.cmake
 *.xpfm
-*.xsa
+#*.xsa
 *.xclbin
-*.bit
+#*.bit
 *.bin
 
 ############################################
