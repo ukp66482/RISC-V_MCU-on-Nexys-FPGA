@@ -54,10 +54,9 @@ This project provides a ready-to-use RISC-V MCU environment on the Cmod A7-35T f
 │   ├── images/                      # Project-level diagrams
 │   │   └── system_architecture.svg
 │   └── pdf-style.css                # PDF export style (Markdown PDF extension)
-├── Intro/                           # Course introduction slides
+├── Intro_PPT/                       # Course introduction slides
 │   ├── RISCV-MCU.pdf
 │   └── RISCV-MCU.pptx
-├── Old_Nexys_version/               # Legacy Nexys board variant (archived)
 ├── workspace-example/               # Vitis firmware examples (source only)
 │   ├── GPIO_test/src/               # GPIO peripheral test
 │   ├── PWM_test/src/                # PWM servo motor control
