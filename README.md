@@ -40,8 +40,8 @@ This project provides a ready-to-use RISC-V MCU environment on the Cmod A7-35T f
 
 | Directory | Description |
 |-----------|-------------|
-| [`RISC-V-MCU/`](RISC-V-MCU/) | Vivado hardware design — Tcl rebuild script, pre-built bitstream, XSA export |
-| [`Cmod-A7-spec/`](Cmod-A7-spec/) | Board documentation — IP peripherals, pin mapping, power specs, KiCad symbol |
+| [`RISC-V-MCU/`](RISC-V-MCU/) | Vivado hardware design — Tcl rebuild script, pre-built bitstream, XSA export, IP peripheral reference |
+| [`Cmod-A7-spec/`](Cmod-A7-spec/) | Board documentation — pin mapping, power specs, KiCad symbol, constraints file |
 | [`Vitis-Software-Dev-Guide/`](Vitis-Software-Dev-Guide/) | Vitis guides — JTAG debug mode, standalone boot mode, core concepts |
 | [`workspace-example/`](workspace-example/) | Firmware examples — GPIO, PWM, UART, assembly LED control |
 | [`Intro_PPT/`](Intro_PPT/) | Course introduction slides (PDF + PPTX) |
@@ -93,13 +93,18 @@ The `workspace-example/` directory contains four ready-to-use test programs:
 
 ## Documentation
 
+### MCU Design Reference
+
+| Document | Description |
+|----------|-------------|
+| [IP Peripheral Reference](RISC-V-MCU/IP-Specification/Cmod_A7_IP_Peripheral_Reference.md) | Full AXI IP list, base addresses, parameters, interrupt mapping |
+
 ### Board Specification
 
 Hardware documentation in [`Cmod-A7-spec/`](Cmod-A7-spec/):
 
 | Document | Description |
 |----------|-------------|
-| [IP Peripheral Reference](Cmod-A7-spec/IP-Specification/Cmod_A7_IP_Peripheral_Reference.md) | Full AXI IP list, base addresses, parameters, interrupt mapping |
 | [Pin Specification](Cmod-A7-spec/Pin-Specification/Cmod_A7_Pin_Specification.md) | DIP connector pin map, GPIO/PWM/UART/ADC assignments, electrical characteristics |
 | [Power Specification](Cmod-A7-spec/Power-Specification/Cmod_A7_Power_Specification.md) | Power rails, input options, VU pin behavior, dual-supply considerations |
 
