@@ -64,6 +64,11 @@ This project provides a ready-to-use RISC-V MCU environment on the Cmod A7-35T f
 └── .gitignore
 ```
 
+## Prerequisites
+
+- **Vivado 2025.2** — for synthesizing and implementing the FPGA design, and programming the bitstream
+- **Vitis 2025.2** — for creating the hardware platform and developing firmware applications
+
 ## Getting Started
 
 ### 1. Rebuild the Vivado Project

@@ -133,7 +133,10 @@ Thumbs.db
 __pycache__/
 *.pyc
 
-/RISC-V-MCU
+/RISC-V-MCU/*
+!/RISC-V-MCU/top.bit
+!/RISC-V-MCU/top.tcl
+!/RISC-V-MCU/top_wrapper.xsa
 
 ############################################
 # Workspace example – ignore all except .c/.h sources
