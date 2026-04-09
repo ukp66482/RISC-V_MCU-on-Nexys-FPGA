@@ -26,7 +26,7 @@
 
 /*--- Base addresses (from xparameters.h) ---*/
 #define PWM0_BASEADDR   XPAR_PWM_0_BASEADDR    /* 0x41C10000, DIP pin 10 */
-#define PWM1_BASEADDR   XPAR_PWM1_BASEADDR     /* 0x41C20000, DIP pin 34 */
+#define PWM1_BASEADDR   XPAR_PWM_1_BASEADDR     /* 0x41C20000, DIP pin 34 */
 #define PWM2_BASEADDR   XPAR_PWM_2_BASEADDR    /* 0x41C30000, DIP pin 40 */
 
 /*--- SG90 timing in nanoseconds ---*/
