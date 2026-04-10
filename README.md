@@ -41,10 +41,10 @@ This project provides a ready-to-use RISC-V MCU environment on the Cmod A7-35T f
 | Directory | Description |
 |-----------|-------------|
 | [`release/`](release/) | Pre-built outputs — `top.bit` bitstream and `top_wrapper.xsa` for direct use without rebuilding |
-| [`RISC-V-MCU/`](RISC-V-MCU/) | Vivado hardware design — Tcl rebuild script and IP peripheral reference |
-| [`Cmod-A7-spec/`](Cmod-A7-spec/) | Board documentation — pin mapping, power specs, KiCad symbol, constraints file |
-| [`Vitis-Software-Dev-Guide/`](Vitis-Software-Dev-Guide/) | Vitis guides — JTAG debug mode, standalone boot mode, core concepts |
-| [`workspace-example/`](workspace-example/) | Firmware examples — GPIO, PWM, UART, assembly LED control |
+| [`RISC-V-MCU/`](RISC-V-MCU/) | Vivado hardware design — `top.tcl` rebuild script, IP peripheral reference |
+| [`Cmod-A7-spec/`](Cmod-A7-spec/) | Board documentation — XDC constraints, pin mapping, power specs, KiCad symbol |
+| [`Vitis-Software-Dev-Guide/`](Vitis-Software-Dev-Guide/) | Vitis development guides — JTAG debug mode, standalone boot mode, core concepts |
+| [`workspace-example/`](workspace-example/) | Firmware examples — GPIO, PWM, UART, RISC-V assembly LED control |
 | [`Intro_PPT/`](Intro_PPT/) | Course introduction slides (PDF + PPTX) |
 | [`docs/`](docs/) | Project-level images and diagrams |
 
