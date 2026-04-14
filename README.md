@@ -33,14 +33,14 @@ This project provides a ready-to-use RISC-V MCU environment on the Cmod A7-35T f
 - **Timers** — 3 × 32-bit general-purpose (with interrupt)
 - **Interrupt Controller** — 6-channel AXI INTC
 - **XADC** — 12-bit ADC, 500 KSPS aggregate / 100 KSPS per channel (2 external analog inputs)
-- **QSPI Flash** — On-board Quad-SPI flash
-- **SRAM** — 512 KB external cellular RAM (axi_emc, 32 MB address range)
+- **QSPI Flash** — On-board Quad-SPI NOR Flash (axi_quad_spi, base 0x44A20000); mapped to both Data and Instruction buses, supports instruction fetch (XIP)
+- **SRAM** — 512 KB external cellular RAM (axi_emc, base 0x60000000, 32 MB address range); mapped to both Data and Instruction buses
 
 ## Repository Structure
 
 ```
 ├── release/                    # Pre-built outputs (top.bit, top_wrapper.xsa)
-├── RISC-V-MCU/                 # Vivado project (top.tcl rebuild script, IP reference)
+├── RISC-V-MCU/                 # Vivado project (recreate_project.tcl, top.tcl, IP reference)
 ├── Cmod-A7-spec/               # Board files (XDC constraints, pin/power specs)
 ├── Vitis-Software-Dev-Guide/   # Vitis guides (JTAG debug, standalone boot)
 ├── workspace-example/          # Firmware examples (GPIO, PWM, UART, assembly)
@@ -61,10 +61,10 @@ The fastest way to get up and running is to use **JTAG Debug Mode** — load and
 Open Vivado 2025.2 and rebuild the hardware design from the Tcl script:
 
 ```tcl
-source RISC-V-MCU/top.tcl
+source RISC-V-MCU/recreate_project.tcl
 ```
 
-This recreates the full block design, including the MicroBlaze RISC-V processor and all peripherals. After synthesis and implementation, export the hardware as an `.xsa` file for Vitis. Alternatively, use the pre-built `release/top_wrapper.xsa` directly.
+This registers the board files, creates the project, reconstructs the full block design (MicroBlaze RISC-V processor and all peripherals), adds XDC constraints, and generates the HDL wrapper. After synthesis and implementation, export the hardware as an `.xsa` file for Vitis. Alternatively, use the pre-built `release/top_wrapper.xsa` directly.
 
 ### 2. Create a Vitis Platform and Application
 

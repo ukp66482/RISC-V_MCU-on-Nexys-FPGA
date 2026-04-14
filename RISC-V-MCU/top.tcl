@@ -47,19 +47,10 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 # project, but make sure you do not have an existing project
 # <./myproj/project_1.xpr> in the current working folder.
 
-# Add local board files to Vivado's board repository path
-set board_repo_path [file normalize "$script_folder/../Cmod-A7-spec/Board-Files"]
-set current_repo_paths [get_param board.repoPaths]
-if { [lsearch $current_repo_paths $board_repo_path] == -1 } {
-   set_param board.repoPaths [concat $current_repo_paths [list $board_repo_path]]
-}
-
-set board_part_id "digilentinc.com:cmod_a7-35t:part0:1.2"
-
 set list_projs [get_projects -quiet]
 if { $list_projs eq "" } {
-   create_project RISC-V-MCU $script_folder -part xc7a35tcpg236-1
-   set_property BOARD_PART $board_part_id [current_project]
+   create_project project_1 myproj -part xc7a35tcpg236-1
+   set_property BOARD_PART digilentinc.com:cmod_a7-35t:part0:1.2 [current_project]
 }
 
 
@@ -381,7 +372,7 @@ proc create_root_design { parentCell } {
   # Create instance: microblaze_riscv_0_axi_periph, and set properties
   set microblaze_riscv_0_axi_periph [ create_bd_cell -type ip -vlnv xilinx.com:ip:smartconnect:1.0 microblaze_riscv_0_axi_periph ]
   set_property -dict [list \
-    CONFIG.NUM_MI {20} \
+    CONFIG.NUM_MI {19} \
     CONFIG.NUM_SI {1} \
   ] $microblaze_riscv_0_axi_periph
 
@@ -566,6 +557,8 @@ proc create_root_design { parentCell } {
 
   # Create instance: smartconnect_0, and set properties
   set smartconnect_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:smartconnect:1.0 smartconnect_0 ]
+  set_property CONFIG.NUM_MI {2} $smartconnect_0
+
 
   # Create interface connections
   connect_bd_intf_net -intf_net INT_0_3_GPIO [get_bd_intf_ports intr] [get_bd_intf_pins INT_0_3/GPIO]
@@ -596,15 +589,15 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net microblaze_riscv_0_axi_periph_M14_AXI [get_bd_intf_pins microblaze_riscv_0_axi_periph/M14_AXI] [get_bd_intf_pins timer_1/S_AXI]
   connect_bd_intf_net -intf_net microblaze_riscv_0_axi_periph_M15_AXI [get_bd_intf_pins microblaze_riscv_0_axi_periph/M15_AXI] [get_bd_intf_pins timer_2/S_AXI]
   connect_bd_intf_net -intf_net microblaze_riscv_0_axi_periph_M16_AXI [get_bd_intf_pins microblaze_riscv_0_axi_periph/M16_AXI] [get_bd_intf_pins uart_1/S_AXI]
-  connect_bd_intf_net -intf_net microblaze_riscv_0_axi_periph_M17_AXI [get_bd_intf_pins microblaze_riscv_0_axi_periph/M17_AXI] [get_bd_intf_pins axi_quad_spi_0/AXI_LITE]
+  connect_bd_intf_net -intf_net microblaze_riscv_0_axi_periph_M17_AXI [get_bd_intf_pins microblaze_riscv_0_axi_periph/M17_AXI] [get_bd_intf_pins xadc_wiz_0/s_axi_lite]
   connect_bd_intf_net -intf_net microblaze_riscv_0_axi_periph_M18_AXI [get_bd_intf_pins microblaze_riscv_0_axi_periph/M18_AXI] [get_bd_intf_pins smartconnect_0/S01_AXI]
-  connect_bd_intf_net -intf_net microblaze_riscv_0_axi_periph_M19_AXI [get_bd_intf_pins microblaze_riscv_0_axi_periph/M19_AXI] [get_bd_intf_pins xadc_wiz_0/s_axi_lite]
   connect_bd_intf_net -intf_net microblaze_riscv_0_debug [get_bd_intf_pins mdm_1/MBDEBUG_0] [get_bd_intf_pins microblaze_riscv_0/DEBUG]
   connect_bd_intf_net -intf_net microblaze_riscv_0_dlmb_1 [get_bd_intf_pins microblaze_riscv_0/DLMB] [get_bd_intf_pins microblaze_riscv_0_local_memory/DLMB]
   connect_bd_intf_net -intf_net microblaze_riscv_0_ilmb_1 [get_bd_intf_pins microblaze_riscv_0/ILMB] [get_bd_intf_pins microblaze_riscv_0_local_memory/ILMB]
   connect_bd_intf_net -intf_net microblaze_riscv_0_intc_axi [get_bd_intf_pins microblaze_riscv_0_axi_periph/M00_AXI] [get_bd_intf_pins microblaze_riscv_0_axi_intc/s_axi]
   connect_bd_intf_net -intf_net microblaze_riscv_0_interrupt [get_bd_intf_pins microblaze_riscv_0_axi_intc/interrupt] [get_bd_intf_pins microblaze_riscv_0/INTERRUPT]
   connect_bd_intf_net -intf_net smartconnect_0_M00_AXI [get_bd_intf_pins smartconnect_0/M00_AXI] [get_bd_intf_pins axi_emc_0/S_AXI_MEM]
+  connect_bd_intf_net -intf_net smartconnect_0_M01_AXI [get_bd_intf_pins smartconnect_0/M01_AXI] [get_bd_intf_pins axi_quad_spi_0/AXI_LITE]
 
   # Create port connections
   connect_bd_net -net INT_0_3_ip2intc_irpt  [get_bd_pins INT_0_3/ip2intc_irpt] \
@@ -730,6 +723,7 @@ proc create_root_design { parentCell } {
   assign_bd_address -offset 0x41C50000 -range 0x00010000 -with_name SEG_timer_2_Reg_1 -target_address_space [get_bd_addr_spaces microblaze_riscv_0/Data] [get_bd_addr_segs timer_2/S_AXI/Reg] -force
   assign_bd_address -offset 0x44A30000 -range 0x00010000 -target_address_space [get_bd_addr_spaces microblaze_riscv_0/Data] [get_bd_addr_segs xadc_wiz_0/s_axi_lite/Reg] -force
   assign_bd_address -offset 0x60000000 -range 0x02000000 -target_address_space [get_bd_addr_spaces microblaze_riscv_0/Instruction] [get_bd_addr_segs axi_emc_0/S_AXI_MEM/MEM0] -force
+  assign_bd_address -offset 0x44A20000 -range 0x00010000 -target_address_space [get_bd_addr_spaces microblaze_riscv_0/Instruction] [get_bd_addr_segs axi_quad_spi_0/AXI_LITE/Reg] -force
   assign_bd_address -offset 0x00000000 -range 0x00020000 -target_address_space [get_bd_addr_spaces microblaze_riscv_0/Instruction] [get_bd_addr_segs microblaze_riscv_0_local_memory/ilmb_bram_if_cntlr/SLMB/Mem] -force
 
 
@@ -747,26 +741,5 @@ proc create_root_design { parentCell } {
 ##################################################################
 
 create_root_design ""
-
-##################################################################
-# ADD CONSTRAINTS
-##################################################################
-
-set xdc_file [file normalize "$script_folder/../Cmod-A7-spec/Cmod-A7-Master.xdc"]
-if { [file exists $xdc_file] } {
-   add_files -fileset constrs_1 $xdc_file
-   common::send_gid_msg -ssname BD::TCL -id 2010 -severity "INFO" "Added constraints file: $xdc_file"
-} else {
-   common::send_gid_msg -ssname BD::TCL -id 2011 -severity "WARNING" "Constraints file not found: $xdc_file"
-}
-
-##################################################################
-# CREATE HDL WRAPPER
-##################################################################
-
-make_wrapper -files [get_files ${design_name}.bd] -top
-add_files -norecurse [glob $script_folder/RISC-V-MCU.gen/sources_1/bd/${design_name}/hdl/${design_name}_wrapper.v]
-set_property top ${design_name}_wrapper [current_fileset]
-common::send_gid_msg -ssname BD::TCL -id 2012 -severity "INFO" "HDL wrapper created and set as top."
 
 
