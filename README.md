@@ -17,7 +17,7 @@ This project provides a ready-to-use RISC-V MCU environment on the Cmod A7-35T f
 | Item | Detail |
 |------|--------|
 | FPGA | Xilinx Artix-7 xc7a35tcpg236-1 |
-| Processor | MicroBlaze RISC-V (32-bit, RV32IM + Bitmanip) |
+| Processor | MicroBlaze RISC-V (32-bit, RV32IM + Bitmanip, Single Core, 5-Stage Pipeline) |
 | System Clock | 100 MHz (PLL from 12 MHz on-board oscillator) |
 | Local Memory | 128 KB (Block RAM, 128 KB Instruction + Data, shared True Dual-Port) |
 | Interconnect | AXI SmartConnect (20 peripheral ports) |
